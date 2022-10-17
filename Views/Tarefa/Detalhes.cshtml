@@ -1,0 +1,40 @@
+@model TrilhaApiDesafio.Models.Tarefa
+
+@{
+    ViewData["Title"] = "Detalhes da tarefa";
+}
+
+<h1> Detalhes </h1>
+
+<div>
+    <dl class="row">
+        <dt class="col-sm-1">
+            @Html.DisplayNameFor(x => x.Titulo):
+        </dt>
+        <dt class="col-sm-3">
+            @Html.DisplayFor(x => x.Titulo)
+        </dt>
+        <dt class="col-sm-1">
+            @Html.DisplayNameFor(x => x.Descricao):
+        </dt>
+        <dt class="col-sm-3">
+            @Html.DisplayFor(x => x.Descricao)
+        </dt>
+        <dt class="col-sm-1">
+            @Html.DisplayNameFor(x => x.Data):
+        </dt>
+        <dt class="col-sm-3">
+            @Html.DisplayFor(x => x.Data)
+        </dt>
+        <dt class="col-sm-1">
+            @Html.DisplayNameFor(x => x.Status):
+        </dt>
+        <dt class="col-sm-3">
+            @Html.DisplayFor(x => x.Status)
+        </dt>
+    </dl>
+</div>
+
+<a asp-action="Editar" asp-route-id="@Model.Id">Editar</a>
+&nbsp;
+<a asp-action="Index">Voltar</a>

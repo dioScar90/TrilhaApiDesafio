@@ -1,0 +1,61 @@
+@model IEnumerable<TrilhaApiDesafio.Models.Tarefa>
+
+@{
+    ViewData["Title"] = "Listagem de tarefas";
+}
+
+<h2> Tarefas </h2>
+
+<p>
+    <a asp-action="Criar"> Nova tarefa </a>
+</p>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Id)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Titulo)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Descricao)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Data)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Status)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <th>
+                    @Html.DisplayFor(model => item.Id)
+                </th>
+                <th>
+                    @Html.DisplayFor(model => item.Titulo)
+                </th>
+                <th>
+                    @Html.DisplayFor(model => item.Descricao)
+                </th>
+                <th>
+                    @Html.DisplayFor(model => item.Data)
+                </th>
+                <th>
+                    @Html.DisplayFor(model => item.Status)
+                </th>
+                <td>
+                    <a asp-action="Editar" asp-route-id="@item.Id"> Editar </a>
+                    <a asp-action="Detalhes" asp-route-id="@item.Id"> Detalhes </a>
+                    <a asp-action="Deletar" asp-route-id="@item.Id"> Deletar </a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
