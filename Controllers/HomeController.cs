@@ -13,8 +13,9 @@ public class HomeController : Controller
         _logger = logger;
     }
 
-    public IActionResult Index()
+    public IActionResult Index([FromServices]IConfiguration config)
     {
+        ViewBag.Environment = config["Ambiente"];
         return View();
     }
 
