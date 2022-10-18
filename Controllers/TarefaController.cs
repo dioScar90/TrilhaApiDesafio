@@ -45,33 +45,7 @@ namespace TrilhaApiDesafio.Controllers
         {
             return View();
         }
-
-        [HttpPost]
-        public IActionResult PesquisarResult(Tarefa tarefa)
-        {
-            var tarefasDoBanco = _context.Tarefas.Find(tarefa.Id);
-
-            // tarefaDoBanco.Titulo = tarefa.Titulo;
-            // tarefaDoBanco.Descricao = tarefa.Descricao;
-            // tarefaDoBanco.Data = tarefa.Data;
-            // tarefaDoBanco.Status = tarefa.Status;
-
-            // _context.Tarefas.Update(tarefaDoBanco);
-            // _context.SaveChanges();
-
-            // return RedirectToAction(nameof(Index));
-
-
-            // var tarefa = _context.Tarefas.Find(id);
-
-            Console.WriteLine("<script>alert('aquiiii')</script>");
-
-            if (tarefasDoBanco == null)
-                return RedirectToAction(nameof(Index));
-            
-            return View(tarefasDoBanco);
-        }
-
+        
         public IActionResult Editar(int id)
         {
             var tarefa = _context.Tarefas.Find(id);
@@ -106,6 +80,65 @@ namespace TrilhaApiDesafio.Controllers
                 return RedirectToAction(nameof(Index));
             
             return View(tarefa);
+        }
+
+        [HttpPost]
+        public IActionResult OrganizarPesquisa(Tarefa tarefa)
+        {
+            int idAux = tarefa.Id;
+            var retorno = tarefa;
+
+            switch (idAux)
+            {
+                case 1:
+                    retorno = ObterPorTitulo(tarefa.Titulo);
+                    break;
+                case 2:
+                    retorno = ObterPorData(tarefa.Data);
+                    break;
+                case 3:
+                    retorno = ObterPorStatus(tarefa.Status);
+                    break;
+            }
+        }
+
+        [HttpPost]
+        public IActionResult ObterPorTitulo(string titulo)
+        {
+            var tarefasDoBanco = _context.Tarefas.Find(tarefa.Titulo);
+            
+            Console.WriteLine("<script>alert('aquiiii')</script>");
+
+            if (tarefasDoBanco == null)
+                return RedirectToAction(nameof(Index));
+            
+            return tarefasDoBanco;
+        }
+
+        [HttpPost]
+        public IActionResult ObterPorData(DateTime data)
+        {
+            var tarefasDoBanco = _context.Tarefas.Find(tarefa.Data);
+            
+            Console.WriteLine("<script>alert('aquiiii')</script>");
+
+            if (tarefasDoBanco == null)
+                return RedirectToAction(nameof(Index));
+            
+            return View(tarefasDoBanco);
+        }
+
+        [HttpPost]
+        public IActionResult ObterPorStatus(EnumStatusTarefa status)
+        {
+            var tarefasDoBanco = _context.Tarefas.Find(tarefa.Status);
+            
+            Console.WriteLine("<script>alert('aquiiii')</script>");
+
+            if (tarefasDoBanco == null)
+                return RedirectToAction(nameof(Index));
+            
+            return View(tarefasDoBanco);
         }
 
         public IActionResult Deletar(int id)

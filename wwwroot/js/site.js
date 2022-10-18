@@ -3,35 +3,25 @@
 
 // Write your JavaScript code.
 $("#status_search").change(function () {
-    $("#por_id, #por_titulo, #por_descricao, #por_data, #por_status").hide();
-    $("#id_tarefa, #titulo_tarefa, #descricao_tarefa, #data_tarefa").val("");
+    $("#por_titulo, #por_data, #por_status").hide();
+    $("#titulo_tarefa, #data_tarefa").val("");
     $("#status_tarefa").prop("selectedIndex", 0);
 
     let idx = this.selectedIndex;
 
     switch (idx) {
         case 1:
-            // $("#id_tarefa").attr("placeholder", "Informe o número do Id").focus();
-            $("#id_tarefa").val("3");
-            $("#por_id").show();
-            break;
-        case 2:
             $("#titulo_tarefa").attr("placeholder", "Escreva o título");
             $("#por_titulo").show();
             $("#titulo_tarefa").focus();
             break;
-        case 3:
-            $("#descricao_tarefa").attr("placeholder", "Escreva a descrição");
-            $("#por_descricao").show();
-            $("#descricao_tarefa").focus();
-            break;
-        case 4:
+        case 2:
             $("#por_data").show();
             break;
         case 5:
             $("#por_status").show();
             break;
         default:
-            $("#por_id, #por_titulo_descricao, #por_data, #por_status").hide();
+            $("#por_titulo, #por_data, #por_status").hide();
     }
  });
