@@ -10,7 +10,7 @@
 
 <div class="row">
     <div class="col-md-4">
-        <form asp-action="Pesquisar">
+        <form asp-action="PesquisarResult">
             <div class="form-group">
                 <label class="control-label">Pesquisar por:</label>
                 <select class=form-control id="status_search">
@@ -25,19 +25,23 @@
             <div>
             <div class="form-group" id="por_id" style="display:none;">
                 <label class="control-label"></label>
-                <input type="number" name="id_tarefa" id="id_tarefa" placeholder="Informe o número do Id" min="0" step="1" class="form-control">
+                <input type="number" name="Id" id="id_tarefa" min="0" step="1" class="form-control">
             </div>
-            <div class="form-group" id="por_titulo_descricao" style="display:none;">
+            <div class="form-group" id="por_titulo" style="display:none;">
                 <label class="control-label"></label>
-                <input type="text" name="tit_desc_tarefa" id="tit_desc_tarefa" class="form-control">
+                <input type="text" name="Titulo" id="titulo_tarefa" class="form-control">
+            </div>
+            <div class="form-group" id="por_descricao" style="display:none;">
+                <label class="control-label"></label>
+                <input type="text" name="Tarefa" id="descricao_tarefa" class="form-control">
             </div>
             <div class="form-group" id="por_data" style="display:none;">
                 <label class="control-label">Coloque uma data:</label>
-                <input type="date" name="data_tarefa" id="data_tarefa" class="form-control">
+                <input type="date" name="Data" id="data_tarefa" class="form-control">
             </div>
             <div class="form-group" id="por_status" style="display:none;">
                 <label class="control-label"></label>
-                <select name="status_tarefa" id="status_tarefa" class=form-control>
+                <select name="Status" id="status_tarefa" class=form-control>
                     <option value="0" style="display:none;">-- Escolha o status --</option>
                     <option value="Pendente">Pendente</option>
                     <option value="Finalizado">Finalizado</option>

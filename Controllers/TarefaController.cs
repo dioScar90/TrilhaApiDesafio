@@ -46,14 +46,30 @@ namespace TrilhaApiDesafio.Controllers
             return View();
         }
 
-        public IActionResult Pesquisar(int id)
+        [HttpPost]
+        public IActionResult PesquisarResult(Tarefa tarefa)
         {
-            var tarefa = _context.Tarefas.Find(id);
+            var tarefasDoBanco = _context.Tarefas.Find(tarefa.Id);
 
-            if (tarefa == null)
+            // tarefaDoBanco.Titulo = tarefa.Titulo;
+            // tarefaDoBanco.Descricao = tarefa.Descricao;
+            // tarefaDoBanco.Data = tarefa.Data;
+            // tarefaDoBanco.Status = tarefa.Status;
+
+            // _context.Tarefas.Update(tarefaDoBanco);
+            // _context.SaveChanges();
+
+            // return RedirectToAction(nameof(Index));
+
+
+            // var tarefa = _context.Tarefas.Find(id);
+
+            Console.WriteLine("<script>alert('aquiiii')</script>");
+
+            if (tarefasDoBanco == null)
                 return RedirectToAction(nameof(Index));
             
-            return View(tarefa);
+            return View(tarefasDoBanco);
         }
 
         public IActionResult Editar(int id)
