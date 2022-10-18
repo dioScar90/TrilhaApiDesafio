@@ -41,6 +41,21 @@ namespace TrilhaApiDesafio.Controllers
             return View(tarefa);
         }
 
+        public IActionResult Pesquisar()
+        {
+            return View();
+        }
+
+        public IActionResult Pesquisar(int id)
+        {
+            var tarefa = _context.Tarefas.Find(id);
+
+            if (tarefa == null)
+                return RedirectToAction(nameof(Index));
+            
+            return View(tarefa);
+        }
+
         public IActionResult Editar(int id)
         {
             var tarefa = _context.Tarefas.Find(id);
