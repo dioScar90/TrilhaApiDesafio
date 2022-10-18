@@ -86,7 +86,7 @@ namespace TrilhaApiDesafio.Controllers
         public IActionResult OrganizarPesquisa(Tarefa tarefa)
         {
             int idAux = tarefa.Id;
-            var retorno = tarefa;
+            Tarefa retorno = new();
 
             switch (idAux)
             {
@@ -100,45 +100,47 @@ namespace TrilhaApiDesafio.Controllers
                     retorno = ObterPorStatus(tarefa.Status);
                     break;
             }
+
+            if (tarefa == null)
+                return RedirectToAction(nameof(Index));
+            
+            return View(tarefa);
         }
 
-        [HttpPost]
-        public IActionResult ObterPorTitulo(string titulo)
+        public Tarefa ObterPorTitulo(string titulo)
         {
-            var tarefasDoBanco = _context.Tarefas.Find(tarefa.Titulo);
+            var tarefasDoBanco = _context.Tarefas.Find(titulo);
             
-            Console.WriteLine("<script>alert('aquiiii')</script>");
+            // Console.WriteLine("<script>alert('aquiiii')</script>");
 
-            if (tarefasDoBanco == null)
-                return RedirectToAction(nameof(Index));
+            // if (tarefasDoBanco == null)
+            //     return RedirectToAction(nameof(Index));
             
             return tarefasDoBanco;
         }
 
-        [HttpPost]
-        public IActionResult ObterPorData(DateTime data)
+        public Tarefa ObterPorData(DateTime data)
         {
-            var tarefasDoBanco = _context.Tarefas.Find(tarefa.Data);
+            var tarefasDoBanco = _context.Tarefas.Find(data);
             
-            Console.WriteLine("<script>alert('aquiiii')</script>");
+            // Console.WriteLine("<script>alert('aquiiii')</script>");
 
-            if (tarefasDoBanco == null)
-                return RedirectToAction(nameof(Index));
+            // if (tarefasDoBanco == null)
+            //     return RedirectToAction(nameof(Index));
             
-            return View(tarefasDoBanco);
+            return tarefasDoBanco;
         }
 
-        [HttpPost]
-        public IActionResult ObterPorStatus(EnumStatusTarefa status)
+        public Tarefa ObterPorStatus(EnumStatusTarefa status)
         {
-            var tarefasDoBanco = _context.Tarefas.Find(tarefa.Status);
+            var tarefasDoBanco = _context.Tarefas.Find(status);
             
-            Console.WriteLine("<script>alert('aquiiii')</script>");
+            // Console.WriteLine("<script>alert('aquiiii')</script>");
 
-            if (tarefasDoBanco == null)
-                return RedirectToAction(nameof(Index));
+            // if (tarefasDoBanco == null)
+            //     return RedirectToAction(nameof(Index));
             
-            return View(tarefasDoBanco);
+            return tarefasDoBanco;
         }
 
         public IActionResult Deletar(int id)
