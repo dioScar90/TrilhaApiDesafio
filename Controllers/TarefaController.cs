@@ -23,7 +23,7 @@ namespace TrilhaApiDesafio.Controllers
             var tarefas = _context.Tarefas.ToList();
             
             tarefas = tarefas.OrderBy(o => o.Data).ToList();
-
+            
             return View(tarefas);
         }
 
