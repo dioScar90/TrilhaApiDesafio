@@ -83,10 +83,17 @@ namespace TrilhaApiDesafio.Controllers
         }
 
         [HttpPost]
-        public IActionResult OrganizarPesquisa(Tarefa tarefa)
+        public IActionResult PesquisarResult(Tarefa tarefa)
         {
             int idAux = tarefa.Id;
-            Tarefa retorno = new();
+            List<Tarefa> retorno = new();
+
+            Console.WriteLine(
+                "\n\n\n\n\n\n" +
+                $"Passando por OrganizarPesquisa({idAux})" +
+                $"\nData: {tarefa.Status}" +
+                "\n\n\n\n\n"
+            );
 
             switch (idAux)
             {
@@ -104,12 +111,29 @@ namespace TrilhaApiDesafio.Controllers
             if (tarefa == null)
                 return RedirectToAction(nameof(Index));
             
+            Console.WriteLine($"Aqui PORRAAAAAAAAAA {tarefa.Titulo}");
             return View(tarefa);
         }
 
-        public Tarefa ObterPorTitulo(string titulo)
+        public List<Tarefa> ObterPorTitulo(string titulo)
         {
-            var tarefasDoBanco = _context.Tarefas.Find(titulo);
+            var tarefasDoBanco = _context.Tarefas.Where(
+                x => x.Titulo == titulo
+            ).ToList();
+            
+            // Console.WriteLine("<script>alert('aquiiii')</script>");
+
+            // if (tarefasDoBanco == null)
+            //     return RedirectToAction(nameof(Index));
+
+            Console.WriteLine($"AQUI PORRAAAAAAAAAA {tarefasDoBanco[0].Id}");
+            
+            return tarefasDoBanco;
+        }
+
+        public List<Tarefa> ObterPorData(DateTime data)
+        {
+            var tarefasDoBanco = _context.Tarefas.ToList();
             
             // Console.WriteLine("<script>alert('aquiiii')</script>");
 
@@ -119,21 +143,9 @@ namespace TrilhaApiDesafio.Controllers
             return tarefasDoBanco;
         }
 
-        public Tarefa ObterPorData(DateTime data)
+        public List<Tarefa> ObterPorStatus(EnumStatusTarefa status)
         {
-            var tarefasDoBanco = _context.Tarefas.Find(data);
-            
-            // Console.WriteLine("<script>alert('aquiiii')</script>");
-
-            // if (tarefasDoBanco == null)
-            //     return RedirectToAction(nameof(Index));
-            
-            return tarefasDoBanco;
-        }
-
-        public Tarefa ObterPorStatus(EnumStatusTarefa status)
-        {
-            var tarefasDoBanco = _context.Tarefas.Find(status);
+            var tarefasDoBanco = _context.Tarefas.ToList();
             
             // Console.WriteLine("<script>alert('aquiiii')</script>");
 

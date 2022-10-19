@@ -18,7 +18,7 @@ $("#status_search").change(function () {
         case 2:
             $("#por_data").show();
             break;
-        case 5:
+        case 3:
             $("#por_status").show();
             break;
         default:
